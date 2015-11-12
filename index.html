@@ -26,7 +26,7 @@
     $.when($dau, $mau).done(function(dau, mau) {
         $('<div></div>').appendTo('body').MPChart({
             chartType: 'map',
-            data: 100*(dau.avg().divide(mau.avg()))
+            data: dau.avg().divide(mau.avg())
         });
     });
       });
