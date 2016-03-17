@@ -7,9 +7,11 @@
   </head>
   <body class="mixpanel-platform-body">
 <h1>Average DAU / Average MAU across the world:</h1><br/>
-Choose an event which defines DAU and MAU</br>
+Choose an event which defines DAU and MAU<br/>
+<div class="mixpanel-platform-section">
 <div id="eventSelect" style="float: left;"></div>    
-
+</div>
+<div id="resultReport"></div>
     <script>
       MP.api.ready(function() {
     var eventName = 'View Sandwiches';
@@ -28,7 +30,7 @@ Choose an event which defines DAU and MAU</br>
     });
 
     $.when($dau, $mau).done(function(dau, mau) {
-        $('<div></div>').appendTo('body').MPChart({
+        $('<div></div>').appendTo('#resultReport').MPChart({
             chartType: 'map',
             data: dau.avg().divide(mau.avg())
         });
