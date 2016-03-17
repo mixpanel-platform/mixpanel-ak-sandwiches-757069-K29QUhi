@@ -46,10 +46,11 @@ I will look for the <i>average</i> DAUs over the last 30 days <b>divided by</b> 
           $('#resultReport').empty();
             $('<div></div>').appendTo('#resultReport').MPChart({
                 chartType: 'map',
-                data: dau.avg().divide(mau.avg())
+                data: (dau.avg().divide(mau.avg()))*100
             });
         });
     }
     </script>
+<div id="footer">note that all metrics are reported in percentages</div>
   </body>
 </html>
