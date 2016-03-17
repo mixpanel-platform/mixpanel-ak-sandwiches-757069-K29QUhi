@@ -17,9 +17,9 @@ Choose an event which defines DAU and MAU<br/>
     
     var eventSelect = $('#eventSelect').appendTo('#eventSelect').MPEventSelect();  // Create the dropdown containing your top events
 eventSelect.on('change', function(e, selection) {                     // Do something when an option is selected
-    query(event);
+    query(selection);
 });
-      MP.api.ready(function query(event) {
+var query = function(event) {
     var eventName = event;
     var $mau = MP.api.segment(eventName, 'mp_country_code', {
         from: moment().subtract(10, 'months'),
