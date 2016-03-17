@@ -16,7 +16,7 @@ Choose an event which defines DAU and MAU;<br/><br/>
 <div style="clear: both;"></div>
 <br/><br/>
 I will look for the <i>average</i> DAUs over the last 30 days <b>divided by</b> the <i>average</i> MAUs over the last 10 months<br/><br/>
-<a href="http://www.startupdefinition.com/dau-over-mau" targe="_top">This statistic</a> will help you hone in on where your user population is most active for a particular event<br/>
+<a href="http://www.startupdefinition.com/dau-over-mau" targe="_top">This statistic</a> will help you hone in on where your user population is most active for a particular event. Metrics are reported in decimals (out of 1)<br/>
 <br/>
 <br/>
 
@@ -46,11 +46,11 @@ I will look for the <i>average</i> DAUs over the last 30 days <b>divided by</b> 
           $('#resultReport').empty();
             $('<div></div>').appendTo('#resultReport').MPChart({
                 chartType: 'map',
-                data: (dau.avg().divide(mau.avg()))*100
+                data: dau.avg().divide(mau.avg())
             });
         });
     }
     </script>
-<div id="footer">note that all metrics are reported in percentages</div>
+
   </body>
 </html>
