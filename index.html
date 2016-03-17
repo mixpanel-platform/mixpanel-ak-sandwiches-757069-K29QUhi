@@ -36,6 +36,7 @@ Choose an event which defines DAU and MAU<br/>
             unit: 'day'
         });
         $.when($dau, $mau).done(function(dau, mau) {
+          $(#resultReport).empty();
             $('<div></div>').appendTo('#resultReport').MPChart({
                 chartType: 'map',
                 data: dau.avg().divide(mau.avg())
