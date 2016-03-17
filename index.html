@@ -15,33 +15,31 @@ Choose an event which defines DAU and MAU<br/>
 
     <script>
     
-    var eventSelect = $('#eventSelect').appendTo('#eventSelect').MPEventSelect();  // Create the dropdown containing your top events
-eventSelect.on('change', function(e, selection) {                     // Do something when an option is selected
-    query(selection);
-});
-var query = function(event) {
-    var eventName = event;
-    var $mau = MP.api.segment(eventName, 'mp_country_code', {
-        from: moment().subtract(10, 'months'),
-        to: moment(),
-        type: 'unique',
-        unit: 'month'
+    var eventSelect = $('#eventSelect').appendTo('#eventSelect').MPEventSelect(); // Create the dropdown containing your top events
+    eventSelect.on('change', function(e, selection) { // Do something when an option is selected
+        query(selection);
     });
-
-    var $dau = MP.api.segment(eventName, 'mp_country_code', {
-        from: moment().subtract(30, 'days'),
-        to: moment(),
-        type: 'unique',
-        unit: 'day'
-    });
-
-    $.when($dau, $mau).done(function(dau, mau) {
-        $('<div></div>').appendTo('#resultReport').MPChart({
-            chartType: 'map',
-            data: dau.avg().divide(mau.avg())
+    var query = function(event) {
+        var eventName = event;
+        var $mau = MP.api.segment(eventName, 'mp_country_code', {
+            from: moment().subtract(10, 'months'),
+            to: moment(),
+            type: 'unique',
+            unit: 'month'
         });
-    });
-      });
+        var $dau = MP.api.segment(eventName, 'mp_country_code', {
+            from: moment().subtract(30, 'days'),
+            to: moment(),
+            type: 'unique',
+            unit: 'day'
+        });
+        $.when($dau, $mau).done(function(dau, mau) {
+            $('<div></div>').appendTo('#resultReport').MPChart({
+                chartType: 'map',
+                data: dau.avg().divide(mau.avg())
+            });
+        });
+    }
     </script>
   </body>
 </html>
